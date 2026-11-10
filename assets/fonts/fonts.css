@@ -1,0 +1,41 @@
+/* Cinzel and Montserrat are licensed under the SIL Open Font License. See OFL-Cinzel.txt and OFL-Montserrat.txt. */
+
+@font-face {
+  font-family: "Cinzel";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("cinzel-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Cinzel";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("cinzel-600.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Cinzel";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("cinzel-700.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("montserrat-500.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("montserrat-600.woff2") format("woff2");
+}

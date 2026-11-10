@@ -1,0 +1,96 @@
+{
+  "locationId": "LFGGW386YaVHK0GGieC7",
+  "defaultEventId": "black-white-party",
+  "timezone": "Pacific/Honolulu",
+  "includeDiscoveredEvents": true,
+  "sourceTypes": ["events_management"],
+  "excludeTestOrders": false,
+  "maxRows": 10,
+  "showBars": true,
+  "showTotal": true,
+  "showLastUpdated": true,
+  "showEventSelector": true,
+  "boardLabel": "COUPON CODE LEADERBOARD",
+  "subtitle": "TRACKING GUEST SIGN-UPS IN REAL TIME",
+  "footerKicker": "",
+  "fonts": {
+    "display": "Cinzel",
+    "ui": "Montserrat",
+    "stylesheet": "assets/fonts/fonts.css"
+  },
+  "colors": {
+    "background": "#070709",
+    "silver": "#f4f1ea",
+    "gold": "#e6d3a1",
+    "bronze": "#c4844a",
+    "muted": "#b9b3a6",
+    "table": "rgba(6, 6, 8, 0.78)",
+    "glow": "rgba(255, 255, 255, 0.92)"
+  },
+  "backgroundImage": "",
+  "logo": "",
+  "sideLeft": "assets/side-left.svg",
+  "sideRight": "assets/side-right.svg",
+  "hideSides": false,
+  "events": [
+    {
+      "id": "black-white-party",
+      "name": "The Black & White Party",
+      "shortName": "The Black & White Party",
+      "sourceIds": ["6ab2cd81b8ef2920288fe2df"],
+      "sourceNames": ["The Black & White Party", "Black & White Party"],
+      "productId": "6ab2cd821c881dda605af0eb",
+      "title": "THE BLACK & WHITE PARTY",
+      "titleLines": ["THE", "BLACK & WHITE", "PARTY"],
+      "subtitle": "TRACKING GUEST SIGN-UPS IN REAL TIME",
+      "footer": "THE BLACK & WHITE PARTY",
+      "footerKicker": "THE",
+      "sideLeft": "assets/side-left.svg",
+      "sideRight": "assets/side-right.svg"
+    },
+    {
+      "id": "havana-after-dark",
+      "name": "Havana After Dark - Ilikai Hotel (Fri Nov 20, 2026)",
+      "shortName": "Havana After Dark",
+      "sourceIds": [],
+      "sourceNames": ["Havana After Dark - Ilikai Hotel (Fri Nov 20, 2026)"],
+      "productId": "6aceafe7e00dc492351655b7",
+      "title": "HAVANA AFTER DARK",
+      "titleLines": ["HAVANA", "AFTER DARK"],
+      "footer": "HAVANA AFTER DARK"
+    },
+    {
+      "id": "costume-party",
+      "name": "Fireworks show | Costume Party (Fri Oct 23, 2026)",
+      "shortName": "Costume Party",
+      "sourceIds": [],
+      "sourceNames": ["Fireworks show | Costume Party (Fri Oct 23, 2026)"],
+      "productId": "6ab61c07d885033ef36547ca",
+      "title": "COSTUME PARTY",
+      "titleLines": ["COSTUME PARTY", "FIREWORKS SHOW"],
+      "footer": "COSTUME PARTY"
+    },
+    {
+      "id": "pool-10-11",
+      "name": "10-11-26 Pool Party",
+      "shortName": "Pool Party · Oct 11",
+      "sourceIds": [],
+      "sourceNames": ["10-11-26 Pool Party"],
+      "productId": "6abb4b12568f980b388fe738",
+      "title": "POOL PARTY",
+      "titleLines": ["POOL PARTY", "OCTOBER 11"],
+      "footer": "POOL PARTY"
+    },
+    {
+      "id": "pool-9-19",
+      "name": "9-19-26 Pool Party",
+      "shortName": "Pool Party · Sep 19",
+      "sourceIds": [],
+      "sourceNames": ["9-19-26 Pool Party"],
+      "productId": "6aa70f23928c5715aa40aca4",
+      "title": "POOL PARTY",
+      "titleLines": ["POOL PARTY", "SEPTEMBER 19"],
+      "footer": "POOL PARTY"
+    }
+  ]
+}

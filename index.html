@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070709">
+  <meta name="description" content="Coupon code leaderboard for Mastermind Entertainment events. Rankings count paid tickets for the selected event.">
+  <title>Coupon Code Leaderboard</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link id="theme-font" rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="stage">
+    <div class="curtain curtain-left" aria-hidden="true"></div>
+    <div class="curtain curtain-right" aria-hidden="true"></div>
+    <aside class="side side-left" aria-hidden="true">
+      <img id="side-left-img" alt="" hidden>
+      <div id="side-left-fallback" class="figure-fallback" hidden>
+        <div class="mannequin mannequin-man"></div>
+      </div>
+    </aside>
+    <aside class="side side-right" aria-hidden="true">
+      <img id="side-right-img" alt="" hidden>
+      <div id="side-right-fallback" class="figure-fallback" hidden>
+        <div class="mannequin mannequin-woman"></div>
+      </div>
+    </aside>
+    <main class="board">
+      <div class="selector">
+        <label class="sr-only" for="event-select">Event</label>
+        <select id="event-select"></select>
+      </div>
+      <img id="logo" class="logo" alt="" hidden>
+      <header class="masthead">
+        <h1 id="title"></h1>
+        <div class="board-title">
+          <svg class="laurel" viewBox="0 0 96 48" aria-hidden="true">
+            <path d="M6 40 C 30 42, 62 28, 90 8" fill="none" stroke="currentColor" stroke-width="1.15"/>
+            <g fill="currentColor">
+              <g transform="translate(10 40) rotate(-58) scale(0.46)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(9 42) rotate(110) scale(0.38)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(22 36) rotate(-50) scale(0.46)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(21 38) rotate(118) scale(0.38)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(35 31) rotate(-42) scale(0.48)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(34 33) rotate(126) scale(0.38)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(49 25) rotate(-34) scale(0.48)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(48 27) rotate(134) scale(0.38)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(63 18) rotate(-26) scale(0.46)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(62 20) rotate(142) scale(0.36)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(78 11) rotate(-16) scale(0.44)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(77 13) rotate(152) scale(0.34)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+            </g>
+          </svg>
+          <h2 id="board-name" class="board-name">Coupon Code Leaderboard</h2>
+          <svg class="laurel laurel-right" viewBox="0 0 96 48" aria-hidden="true">
+            <path d="M6 40 C 30 42, 62 28, 90 8" fill="none" stroke="currentColor" stroke-width="1.15"/>
+            <g fill="currentColor">
+              <g transform="translate(10 40) rotate(-58) scale(0.46)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(9 42) rotate(110) scale(0.38)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(22 36) rotate(-50) scale(0.46)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(21 38) rotate(118) scale(0.38)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(35 31) rotate(-42) scale(0.48)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(34 33) rotate(126) scale(0.38)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(49 25) rotate(-34) scale(0.48)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(48 27) rotate(134) scale(0.38)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(63 18) rotate(-26) scale(0.46)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(62 20) rotate(142) scale(0.36)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(78 11) rotate(-16) scale(0.44)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+              <g transform="translate(77 13) rotate(152) scale(0.34)"><path d="M0 0 C 8 -5 10 -18 0 -32 C -10 -18 -8 -5 0 0 Z"/></g>
+            </g>
+          </svg>
+        </div>
+        <p id="subtitle" class="subtitle"></p>
+        <p id="notice" class="notice" hidden></p>
+      </header>
+      <section class="table-card" aria-labelledby="board-name">
+        <div id="state" class="state" role="status">
+          <p class="state-title">Loading the board</p>
+          <p class="state-copy">Fetching the latest coupon totals.</p>
+        </div>
+        <noscript>
+          <p class="state-copy">Turn on JavaScript to load the coupon totals.</p>
+        </noscript>
+        <table id="table" hidden>
+          <thead>
+            <tr>
+              <th scope="col">Rank</th>
+              <th scope="col">Coupon code</th>
+              <th scope="col">Times used</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+      <footer class="footer">
+        <div class="glow-rule" aria-hidden="true"></div>
+        <p id="footer-kicker" class="footer-kicker"></p>
+        <p id="footer-title" class="footer-title"></p>
+        <p id="meta" class="meta" hidden></p>
+      </footer>
+      <p id="live" class="sr-only" aria-live="polite"></p>
+    </main>
+  </div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

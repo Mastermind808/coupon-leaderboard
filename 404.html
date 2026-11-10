@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting to the leaderboard</title>
+  <script>
+    (function () {
+      var parts = location.pathname.split("/").filter(Boolean);
+      var eventId = parts.pop() || "";
+      var base = "/" + parts.join("/");
+      if (base !== "/") base += "/";
+      if (!eventId || eventId.indexOf(".") !== -1) {
+        location.replace(base);
+        return;
+      }
+      location.replace(base + "?event=" + encodeURIComponent(eventId));
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecting to the leaderboard.</p>
+</body>
+</html>

@@ -1,0 +1,5 @@
+.DS_Store
+node_modules/
+*.log
+data.json.tmp
+agent-tools/
