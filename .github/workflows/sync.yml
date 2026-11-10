@@ -1,11 +1,10 @@
 name: Sync leaderboard and deploy
 
+# No schedule. Counts land as commits to data.json on main
+# (6:00 AM, 2:00 PM, and 10:00 PM HST). A cron would commit over those updates.
 on:
   push:
     branches: [main]
-  schedule:
-    # 6:00 AM Hawaii-Aleutian Standard Time. Hawaii stays on HST (UTC−10) all year.
-    - cron: "0 16 * * *"
   workflow_dispatch:
 
 permissions:

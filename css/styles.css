@@ -251,46 +251,6 @@ select { font: inherit; }
   object-fit: contain;
 }
 
-.selector {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  min-width: 0;
-  margin-bottom: 10px;
-}
-
-.selector[hidden] { display: none; }
-
-.event-select {
-  appearance: none;
-  width: min(440px, 100%);
-  max-width: 100%;
-  min-width: 0;
-  border: 1px solid rgba(230, 211, 161, 0.72);
-  color: var(--silver);
-  background-color: rgba(0, 0, 0, 0.55);
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1.2 L6 6.2 L11 1.2' fill='none' stroke='%23e6d3a1' stroke-width='1.4' stroke-linecap='round'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  border-radius: 999px;
-  padding: 8px 38px 8px 18px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 600;
-  box-shadow: 0 0 12px rgba(230, 211, 161, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.event-select:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
-}
-
-.event-select option {
-  background: #111114;
-  color: var(--silver);
-}
-
 .masthead { text-align: center; }
 
 .title-stack {
@@ -665,11 +625,6 @@ tr.place-3 { background: linear-gradient(90deg, rgba(196, 132, 74, 0.16), transp
 
 @media (max-width: 720px) {
   .stage { padding: 16px 12px 26px; }
-  .event-select {
-    width: 100%;
-    font-size: 16px;
-    letter-spacing: 0.08em;
-  }
   .title-line.is-kicker { letter-spacing: 0.42em; padding-left: 0.42em; }
   .title-line.is-main { letter-spacing: 0.08em; padding-left: 0.08em; }
   .title-line.is-tail { letter-spacing: 0.28em; padding-left: 0.28em; }
@@ -701,7 +656,6 @@ tr.place-3 { background: linear-gradient(90deg, rgba(196, 132, 74, 0.16), transp
 
 @media (max-height: 760px) and (min-width: 900px) {
   .stage { padding-top: 12px; padding-bottom: 12px; }
-  .selector { margin-bottom: 4px; }
   .board-title { margin-top: 0.45rem; }
   .subtitle { margin-top: 0.4rem; }
   .table-card { margin-top: 0.65rem; }

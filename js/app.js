@@ -1,13 +1,11 @@
 import {
   barScale,
-  eventIdFromLocation,
   formatTotal,
   formatUpdated,
   isHighlighted,
   mergeEvents,
   placeTone,
   rankLeaderboard,
-  resolveEventId,
   totalUses,
 } from "./leaderboard.js";
 
@@ -26,8 +24,6 @@ const footerKickerEl = document.querySelector("#footer-kicker");
 const footerTitleEl = document.querySelector("#footer-title");
 const metaEl = document.querySelector("#meta");
 const noticeEl = document.querySelector("#notice");
-const selectEl = document.querySelector("#event-select");
-const selectorEl = document.querySelector(".selector");
 const logoEl = document.querySelector("#logo");
 const leftImg = document.querySelector("#side-left-img");
 const rightImg = document.querySelector("#side-right-img");
@@ -37,7 +33,9 @@ const leftAside = document.querySelector(".side-left");
 const rightAside = document.querySelector(".side-right");
 const liveEl = document.querySelector("#live");
 
-let current = { events: [], config: {}, data: {}, id: "" };
+const PUBLIC_EVENT_ID = "black-white-party";
+
+let current = { events: [], config: {}, data: {}, id: PUBLIC_EVENT_ID };
 
 function leafMarkup(x, y, rotation, scale) {
   return `<g transform="translate(${x.toFixed(2)} ${y.toFixed(2)}) rotate(${rotation.toFixed(2)}) scale(${scale})"><path d="M0 0 C 5.2 -3.2 7.4 -12.4 0 -22 C -7.4 -12.4 -5.2 -3.2 0 0 Z"/><path d="M0 -1.2 C 0.4 -8 0.3 -15 0 -20.5" fill="none" stroke="rgba(0,0,0,0.28)" stroke-width="0.7"/></g>`;
@@ -210,9 +208,7 @@ function renderTitle(event) {
   titleEl.append(accessible, visual);
 }
 
-function renderBoard(event, unknown) {
-  const showSelector = pick(event, "showEventSelector") !== false;
-  selectorEl.hidden = !showSelector;
+function renderBoard(event) {
   renderTitle(event);
   boardNameEl.textContent = pick(event, "boardLabel") || "COUPON CODE LEADERBOARD";
   subtitleEl.textContent = pick(event, "subtitle") || "";
@@ -226,13 +222,8 @@ function renderBoard(event, unknown) {
   );
   document.title = `${event.shortName || event.name} · Coupon Leaderboard`;
 
-  if (unknown) {
-    noticeEl.hidden = false;
-    noticeEl.textContent = "That link doesn't match an event. Choose one from the list.";
-  } else {
-    noticeEl.hidden = true;
-    noticeEl.textContent = "";
-  }
+  noticeEl.hidden = true;
+  noticeEl.textContent = "";
 
   const rows = rankLeaderboard(event.leaderboard);
   const maxRows = Number(pick(event, "maxRows"));
@@ -330,61 +321,37 @@ function renderBoard(event, unknown) {
   liveEl.textContent = `${event.shortName || event.name}. ${leader.code} leads with ${leader.uses} ${leader.uses === 1 ? "use" : "uses"}.`;
 }
 
-function render(unknown = false) {
-  const event = current.events.find((item) => item.id === current.id) || current.events[0];
+function render() {
+  const event = current.events.find((item) => item.id === PUBLIC_EVENT_ID);
   if (!event) {
     applyTheme(null);
-    showState("soon", "Coming soon", "Events will appear here when the board has something to rank.");
+    showState(
+      "soon",
+      "Coming soon",
+      "The Black & White Party board will appear here when it has something to rank.",
+    );
     return;
   }
   current.id = event.id;
   applyTheme(event);
-  renderBoard(event, unknown);
-  if (selectEl.value !== event.id) selectEl.value = event.id;
+  renderBoard(event);
 }
 
-function writeUrl(id, mode) {
-  const url = new URL(window.location.href);
-  url.searchParams.set("event", id);
-  const state = { event: id };
-  if (mode === "push") history.pushState(state, "", url);
-  else history.replaceState(state, "", url);
-}
-
-function readRequested() {
-  return resolveEventId(
-    current.events,
-    eventIdFromLocation(window.location.pathname, window.location.search),
-    current.config.defaultEventId,
-  );
-}
-
-function fillSelect() {
-  selectEl.replaceChildren();
-  for (const event of current.events) {
-    const option = document.createElement("option");
-    option.value = event.id;
-    option.textContent = event.shortName || event.name || event.id;
-    if (event.name && event.name !== option.textContent) option.title = event.name;
-    selectEl.append(option);
-  }
-}
-
-async function loadJson(path) {
-  const response = await fetch(path, { cache: "no-cache" });
+async function loadJson(path, cacheBust = false) {
+  const url = cacheBust ? `${path}?t=${Date.now()}` : path;
+  const response = await fetch(url, { cache: cacheBust ? "no-store" : "no-cache" });
   if (!response.ok) throw new Error(path);
   return response.json();
 }
 
 async function main() {
   try {
-    const [config, data] = await Promise.all([loadJson("config.json"), loadJson("data.json")]);
-    current = { config, data, events: mergeEvents(config, data), id: "" };
-    fillSelect();
-    const requested = readRequested();
-    current.id = requested.id;
-    if (current.id) writeUrl(current.id, "replace");
-    render(requested.unknown);
+    const [config, data] = await Promise.all([
+      loadJson("config.json"),
+      loadJson("data.json", true),
+    ]);
+    current = { config, data, events: mergeEvents(config, data), id: PUBLIC_EVENT_ID };
+    render();
   } catch {
     showState(
       "error",
@@ -393,17 +360,5 @@ async function main() {
     );
   }
 }
-
-selectEl.addEventListener("change", () => {
-  current.id = selectEl.value;
-  writeUrl(current.id, "push");
-  render(false);
-});
-
-window.addEventListener("popstate", () => {
-  const requested = readRequested();
-  current.id = requested.id;
-  render(requested.unknown);
-});
 
 main();

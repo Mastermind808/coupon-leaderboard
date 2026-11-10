@@ -1,6 +1,6 @@
 # Mastermind Entertainment coupon leaderboard
 
-Public leaderboard for Mastermind Entertainment events. Each promoter has a coupon code. The board ranks those codes by how many **paid tickets** used that code at the selected event.
+Public leaderboard for The Black & White Party. Each promoter has a coupon code. The board ranks those codes by how many **paid tickets** used that code.
 
 The page is a static site. It reads [`config.json`](config.json) for the look and [`data.json`](data.json) for the counts. There is no server and no buyer information on the page.
 
@@ -12,14 +12,9 @@ From this folder:
 python3 -m http.server 8741
 ```
 
-Open [http://127.0.0.1:8741/?event=black-white-party](http://127.0.0.1:8741/?event=black-white-party).
+Open [http://127.0.0.1:8741/](http://127.0.0.1:8741/) or [http://127.0.0.1:8741/?event=black-white-party](http://127.0.0.1:8741/?event=black-white-party). Both show The Black & White Party. The page has no event menu. Other events can stay in `data.json`; nothing on the page links to them.
 
-Any static file host works the same way. Paths in the page are relative, so it also works as a GitHub project site (`https://<user>.github.io/<repo>/`).
-
-Share a specific event with either of these:
-
-- `?event=black-white-party`
-- `/black-white-party` on GitHub Pages (the included `404.html` sends that path to the query form)
+Any static file host works the same way. Paths in the page are relative, so it also works as a GitHub project site (`https://<user>.github.io/<repo>/`). `/black-white-party` on GitHub Pages still works: `404.html` sends that path to `?event=black-white-party`.
 
 ## What the board shows
 
@@ -29,9 +24,7 @@ Share a specific event with either of these:
 - The silver bar is the count divided by the leader’s count.
 - **Total tickets** is the sum of those coupon uses for the event, not a guess at tickets sold without a code.
 - **Updated** is `generatedAt` from `data.json`, shown in Hawaii time.
-- An event whose `leaderboard` is `null` shows **Coming soon**.
-
-Changing the event updates the address bar, so the link can be copied from the browser.
+- An event whose `leaderboard` is `null` shows **Coming soon**. The public page only renders The Black & White Party.
 
 ## Change the look without code
 
@@ -41,7 +34,7 @@ Site-wide keys set the default. An event can override any of the same keys. Leav
 
 | Key | What it changes |
 | --- | --- |
-| `defaultEventId` | Event opened when the link has no `?event=` |
+| `defaultEventId` | Kept for the sync config. The page ignores it and always shows The Black & White Party, including when the URL has no query string. |
 | `subtitle` | Line under the leaderboard title. The seeded line is `TRACKING GUEST SIGN-UPS IN REAL TIME`. |
 | `boardLabel` | Middle heading. Seeded as `COUPON CODE LEADERBOARD`. |
 | `footerKicker` | Tiny line above the footer name. The Black & White Party uses `THE`. |
@@ -49,7 +42,7 @@ Site-wide keys set the default. An event can override any of the same keys. Leav
 | `showBars` | `false` hides the silver progress bars. Counts stay. |
 | `showTotal` | `false` hides the total-tickets line. |
 | `showLastUpdated` | `false` hides the Hawaii timestamp. |
-| `showEventSelector` | `false` hides the event dropdown. `?event=` still works. |
+| `showEventSelector` | Unused. The event menu has been removed. `?event=black-white-party` still opens this board. |
 | `fonts.display` | Poster typeface. Files for Cinzel are in `assets/fonts/`. |
 | `fonts.ui` | Small labels, the event menu, and the meta line. |
 | `fonts.stylesheet` | CSS file that declares those families. Point this at another stylesheet to switch fonts. |
@@ -72,7 +65,7 @@ Each object in `events` also accepts:
 | --- | --- |
 | `id` | URL slug. `?event=` must match this. |
 | `name` | Full event name. The sync matches GoHighLevel `sourceName` against this and `sourceNames`. |
-| `shortName` | Label in the dropdown. |
+| `shortName` | Short label. The page does not list events. |
 | `title` | Accessible page title, and the poster title when `titleLines` is omitted. |
 | `titleLines` | Poster lines. Three lines render as a small kicker, a large middle line, and a tracked bottom line (`THE` / `BLACK & WHITE` / `PARTY`). Two lines render as a large line plus a smaller line. |
 | `footer` | Metallic line under the glow rule. |
@@ -179,9 +172,11 @@ Node 20 or newer is required.
 
 The public site is [https://mastermind808.github.io/coupon-leaderboard/](https://mastermind808.github.io/coupon-leaderboard/).
 
-[`.github/workflows/sync.yml`](.github/workflows/sync.yml) deploys on every push to `main`, every day at **6:00 AM Hawaii time** (16:00 UTC; Hawaii does not observe daylight saving), and whenever you run the workflow by hand.
+[`.github/workflows/sync.yml`](.github/workflows/sync.yml) deploys on every push to `main` and whenever you run the workflow by hand. It has no schedule, so it will not commit on a timer.
 
-The sync step runs only when the `GHL_API_KEY` repository secret is set. If that secret is missing, the step prints a warning, leaves `data.json` as it is, and the deploy continues. A missing key does not fail the build.
+Counts are committed to `data.json` on `main` three times a day: **6:00 AM, 2:00 PM, and 10:00 PM Hawaii time**. Each of those pushes redeploys the site. On every page load the board fetches `data.json` with a cache-busting `?t=` query, so a refresh picks up the new file instead of a cached copy.
+
+The sync step still runs on those deploys only when the `GHL_API_KEY` repository secret is set. If that secret is missing, the step prints a warning, leaves `data.json` as it is, and the deploy continues. A missing key does not fail the build. Leave the secret unset so those three daily commits stay as published.
 
 Asset links are relative (`css/styles.css`, `config.json`, `assets/...`), so the board works at the project-site path `/coupon-leaderboard/` and inside an iframe.
 
@@ -189,11 +184,8 @@ One-time setup if Pages is not already on:
 
 1. Open **Settings → Pages → Build and deployment** and set **Source** to **GitHub Actions**.
 2. Open **Actions → Sync leaderboard and deploy** and confirm the latest run on `main` succeeded. Use **Run workflow** if it has not started.
-3. Later, open **Settings → Secrets and variables → Actions** and add `GHL_API_KEY` so the daily job can refresh counts.
 
-The workflow commits straight to `main` when counts change, so branch protection that blocks the Actions token will stop that commit. The deploy of the current files still runs in that same job before the next day’s sync.
-
-Share a specific event with `https://mastermind808.github.io/coupon-leaderboard/?event=black-white-party`.
+The root URL and `?event=black-white-party` both show The Black & White Party: `https://mastermind808.github.io/coupon-leaderboard/`
 
 ## Embed on Wix
 
@@ -203,4 +195,4 @@ Use **Add → Embed code → Embed a site** (or Popular embeds → Embed a site)
 
 GitHub Pages does not send `X-Frame-Options`, so the page can sit in an iframe. The page background is an opaque black, so a transparent iframe still looks solid. The layout follows the iframe width and does not scroll sideways.
 
-Set the Wix element height to **800px on desktop** and **700px on mobile**. That fits the title, the four Black & White codes, the footer, and the total without an inner scrollbar. Add about 70px for each extra code if a later event shows more rows.
+Set the Wix element height to **800px on desktop** and **700px on mobile**. That fits the title, the four Black & White codes, the footer, and the total without an inner scrollbar. Add about 70px for each extra code.

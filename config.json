@@ -9,7 +9,7 @@
   "showBars": true,
   "showTotal": true,
   "showLastUpdated": true,
-  "showEventSelector": true,
+  "showEventSelector": false,
   "boardLabel": "COUPON CODE LEADERBOARD",
   "subtitle": "TRACKING GUEST SIGN-UPS IN REAL TIME",
   "footerKicker": "",
