@@ -19,7 +19,6 @@ const stateEl = document.querySelector("#state");
 const tableEl = document.querySelector("#table");
 const titleEl = document.querySelector("#title");
 const boardNameEl = document.querySelector("#board-name");
-const subtitleEl = document.querySelector("#subtitle");
 const footerKickerEl = document.querySelector("#footer-kicker");
 const footerTitleEl = document.querySelector("#footer-title");
 const metaEl = document.querySelector("#meta");
@@ -211,7 +210,6 @@ function renderTitle(event) {
 function renderBoard(event) {
   renderTitle(event);
   boardNameEl.textContent = pick(event, "boardLabel") || "COUPON CODE LEADERBOARD";
-  subtitleEl.textContent = pick(event, "subtitle") || "";
   const kicker = pick(event, "footerKicker") || "";
   footerKickerEl.textContent = kicker;
   footerKickerEl.hidden = !kicker;

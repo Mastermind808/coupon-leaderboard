@@ -11,7 +11,7 @@
   "showLastUpdated": true,
   "showEventSelector": false,
   "boardLabel": "COUPON CODE LEADERBOARD",
-  "subtitle": "TRACKING GUEST SIGN-UPS IN REAL TIME",
+  "subtitle": "",
   "footerKicker": "",
   "fonts": {
     "display": "Cinzel",
@@ -42,7 +42,7 @@
       "productId": "6ab2cd821c881dda605af0eb",
       "title": "THE BLACK & WHITE PARTY",
       "titleLines": ["THE", "BLACK & WHITE", "PARTY"],
-      "subtitle": "TRACKING GUEST SIGN-UPS IN REAL TIME",
+      "subtitle": "",
       "footer": "THE BLACK & WHITE PARTY",
       "footerKicker": "THE",
       "sideLeft": "assets/side-left.svg",

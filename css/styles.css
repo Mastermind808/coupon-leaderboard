@@ -328,7 +328,6 @@ select { font: inherit; }
   -webkit-text-fill-color: transparent;
 }
 
-.subtitle,
 .notice {
   margin: 0.72rem auto 0;
   max-width: 40rem;
@@ -630,7 +629,6 @@ tr.place-3 { background: linear-gradient(90deg, rgba(196, 132, 74, 0.16), transp
   .title-line.is-tail { letter-spacing: 0.28em; padding-left: 0.28em; }
   .board-name { letter-spacing: 0.08em; text-indent: 0.08em; font-size: 0.68rem; }
   .laurel { width: 42px; }
-  .subtitle { letter-spacing: 0.12em; text-indent: 0.12em; }
   thead th {
     font-size: 8px;
     letter-spacing: 0.12em;
@@ -657,7 +655,6 @@ tr.place-3 { background: linear-gradient(90deg, rgba(196, 132, 74, 0.16), transp
 @media (max-height: 760px) and (min-width: 900px) {
   .stage { padding-top: 12px; padding-bottom: 12px; }
   .board-title { margin-top: 0.45rem; }
-  .subtitle { margin-top: 0.4rem; }
   .table-card { margin-top: 0.65rem; }
   thead th { padding-block: 8px; }
   tbody td { padding-block: 6px; }
