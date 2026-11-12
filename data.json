@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-12T06:02:13-10:00",
+  "generatedAt": "2026-11-12T13:58:46-10:00",
   "timezone": "Pacific/Honolulu",
   "locationId": "LFGGW386YaVHK0GGieC7",
   "source": "seed",
@@ -13,16 +13,17 @@
       "productId": "6ab2cd821c881dda605af0eb",
       "leaderboard": [
         { "code": "BWP", "uses": 17 },
-        { "code": "CONNOR", "uses": 9 },
-        { "code": "ME", "uses": 6 },
-        { "code": "STROBE", "uses": 4 },
+        { "code": "STROBE", "uses": 15 },
+        { "code": "CONNOR", "uses": 10 },
+        { "code": "ME", "uses": 7 },
         { "code": "LEVI", "uses": 3 },
         { "code": "MEIGEN", "uses": 2 },
         { "code": "WOE", "uses": 2 },
+        { "code": "LEIOVER", "uses": 1 },
         { "code": "NALU", "uses": 1 },
         { "code": "TIFF", "uses": 1 }
       ],
-      "totalTickets": 46
+      "totalTickets": 60
     },
     {
       "id": "havana-after-dark",
