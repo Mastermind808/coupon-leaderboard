@@ -34,17 +34,42 @@ export function formatUpdated(iso, timeZone = "Pacific/Honolulu") {
   return `UPDATED ${text}`;
 }
 
+/** Coupon codes that publish as one leaderboard label. Keys are uppercase. */
+export const COUPON_ALIASES = {
+  BWP: "Mastermind Entertainment",
+  ME: "Mastermind Entertainment",
+};
+
+const ALIAS_LABELS = new Set(Object.values(COUPON_ALIASES));
+
+/**
+ * Map a raw coupon code to the label stored and shown on the board.
+ * BWP and ME (any case) share one label. Other codes stay uppercase.
+ */
+export function canonicalCouponLabel(code) {
+  const cleaned = String(code ?? "").trim().replace(/\s+/g, " ");
+  if (!cleaned) return "";
+  const upper = cleaned.toUpperCase();
+  if (Object.prototype.hasOwnProperty.call(COUPON_ALIASES, upper)) return COUPON_ALIASES[upper];
+  for (const label of ALIAS_LABELS) {
+    if (label.toUpperCase() === upper) return label;
+  }
+  return upper;
+}
+
 /**
  * Dense rank: equal counts share a rank, the next count is the next number.
- * Equal counts are ordered by coupon code A–Z.
+ * Equal counts are ordered by label A–Z. Aliased codes are summed first.
  */
 export function rankLeaderboard(entries) {
-  const rows = (entries || [])
-    .filter((entry) => entry && String(entry.code || "").trim() && Number(entry.uses) >= 1)
-    .map((entry) => ({
-      code: String(entry.code).trim().replace(/\s+/g, " ").toUpperCase(),
-      uses: Number(entry.uses),
-    }));
+  const totals = new Map();
+  for (const entry of entries || []) {
+    const code = canonicalCouponLabel(entry?.code);
+    const uses = Number(entry?.uses);
+    if (!code || !Number.isFinite(uses) || uses < 1) continue;
+    totals.set(code, (totals.get(code) || 0) + uses);
+  }
+  const rows = [...totals.entries()].map(([code, uses]) => ({ code, uses }));
   rows.sort((a, b) => b.uses - a.uses || a.code.localeCompare(b.code));
   let rank = 0;
   let lastUses = null;

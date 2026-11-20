@@ -393,9 +393,9 @@ thead th {
   box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.28);
 }
 
-th:nth-child(1) { width: 16%; text-align: center; }
-th:nth-child(2) { width: 40%; text-align: center; }
-th:nth-child(3) { width: 44%; text-align: left; padding-left: 7%; text-indent: 0; }
+th:nth-child(1) { width: 14%; text-align: center; }
+th:nth-child(2) { width: 48%; text-align: center; }
+th:nth-child(3) { width: 38%; text-align: left; padding-left: 4%; text-indent: 0; }
 
 tbody td {
   padding: 9px 8px;
@@ -444,6 +444,19 @@ tr.place-3 { background: linear-gradient(90deg, rgba(196, 132, 74, 0.16), transp
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.pill.is-long {
+  width: 100%;
+  max-width: 100%;
+  padding-inline: 12px;
+  font-size: clamp(0.62rem, 1.15vw, 0.78rem);
+  letter-spacing: 0.04em;
+  text-indent: 0;
+  line-height: 1.15;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
 }
 
 .times-inner {

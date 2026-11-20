@@ -95,8 +95,8 @@ test("counts one use per paid order, per event, and never writes buyer details",
 
   const blackAndWhite = events.find((event) => event.id === "black-white-party");
   assert.deepEqual(blackAndWhite.leaderboard, [
-    { code: "BWP", uses: 2 },
     { code: "CONNOR", uses: 2 },
+    { code: "Mastermind Entertainment", uses: 2 },
     { code: "MEIGEN", uses: 1 },
   ]);
   assert.equal(blackAndWhite.totalTickets, 5);
@@ -127,6 +127,24 @@ test("counts one use per paid order, per event, and never writes buyer details",
   assert.equal(serialized.includes("usageCount"), false);
   assert.equal(serialized.includes("contactEmail"), false);
   assert.equal(payload.source, "gohighlevel");
+});
+
+test("merges BWP and ME orders into one Mastermind Entertainment row", () => {
+  const events = aggregateOrders(
+    [
+      order({ _id: "m1", couponCode: "BWP" }),
+      order({ _id: "m2", couponCode: "me" }),
+      order({ _id: "m3", couponCode: "ME" }),
+      order({ _id: "m4", couponCode: "STROBE" }),
+    ],
+    config,
+  );
+  const event = events.find((item) => item.id === "black-white-party");
+  assert.deepEqual(event.leaderboard, [
+    { code: "Mastermind Entertainment", uses: 3 },
+    { code: "STROBE", uses: 1 },
+  ]);
+  assert.equal(event.totalTickets, 4);
 });
 
 test("formats generatedAt in Hawaii time", () => {

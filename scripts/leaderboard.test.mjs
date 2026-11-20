@@ -15,7 +15,7 @@ test("ranks by uses, shares dense rank, and breaks ties A to Z", () => {
   const ranked = rankLeaderboard([
     { code: "zeta", uses: 2 },
     { code: "CONNOR", uses: 3 },
-    { code: "bwp", uses: 3 },
+    { code: "nora", uses: 3 },
     { code: "LEVI", uses: 1 },
     { code: "ZERO", uses: 0 },
     { code: "  ", uses: 4 },
@@ -23,10 +23,27 @@ test("ranks by uses, shares dense rank, and breaks ties A to Z", () => {
   assert.deepEqual(
     ranked.map((row) => [row.rank, row.code, row.uses]),
     [
-      [1, "BWP", 3],
       [1, "CONNOR", 3],
+      [1, "NORA", 3],
       [2, "ZETA", 2],
       [3, "LEVI", 1],
+    ],
+  );
+});
+
+test("merges BWP and ME into Mastermind Entertainment", () => {
+  const ranked = rankLeaderboard([
+    { code: "bwp", uses: 17 },
+    { code: "ME", uses: 10 },
+    { code: "me", uses: 0 },
+    { code: "STROBE", uses: 40 },
+    { code: "Mastermind Entertainment", uses: 0 },
+  ]);
+  assert.deepEqual(
+    ranked.map((row) => [row.code, row.uses]),
+    [
+      ["STROBE", 40],
+      ["Mastermind Entertainment", 27],
     ],
   );
 });

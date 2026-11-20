@@ -17,6 +17,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { canonicalCouponLabel } from "../js/leaderboard.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ORDERS_URL = "https://services.leadconnectorhq.com/payments/orders";
@@ -158,7 +159,7 @@ export function aggregateOrders(orders, config = {}) {
       const sourceName = String(order.sourceName ?? order.source_name ?? "").trim();
       if (sourceName) bucket.sourceName = sourceName;
     }
-    const code = couponCodeOf(order);
+    const code = canonicalCouponLabel(couponCodeOf(order));
     if (!code) continue;
     bucket.codes.set(code, (bucket.codes.get(code) || 0) + 1);
   }

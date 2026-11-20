@@ -289,7 +289,7 @@ function renderBoard(event) {
     const codeCell = document.createElement("td");
     codeCell.className = "code";
     const pill = document.createElement("span");
-    pill.className = "pill";
+    pill.className = row.code.length > 8 || row.code.includes(" ") ? "pill is-long" : "pill";
     pill.textContent = row.code;
     pill.translate = false;
     codeCell.append(pill);
