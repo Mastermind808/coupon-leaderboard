@@ -33,6 +33,7 @@ body {
   background-color: var(--bg);
   color: var(--silver);
   overflow-x: clip;
+  overflow-y: auto;
 }
 
 body {

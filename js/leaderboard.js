@@ -147,7 +147,6 @@ function presentEvent(configEvent, dataEvent) {
     footerKicker: configEvent.footerKicker,
     boardLabel: configEvent.boardLabel,
     leaderboard: dataEvent ? (dataEvent.leaderboard ?? null) : null,
-    maxRows: configEvent.maxRows,
     showBars: configEvent.showBars,
     showTotal: configEvent.showTotal,
     showLastUpdated: configEvent.showLastUpdated,

@@ -5,7 +5,6 @@
   "includeDiscoveredEvents": true,
   "sourceTypes": ["events_management"],
   "excludeTestOrders": false,
-  "maxRows": 10,
   "showBars": true,
   "showTotal": true,
   "showLastUpdated": true,

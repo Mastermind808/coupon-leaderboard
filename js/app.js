@@ -224,8 +224,6 @@ function renderBoard(event) {
   noticeEl.textContent = "";
 
   const rows = rankLeaderboard(event.leaderboard);
-  const maxRows = Number(pick(event, "maxRows"));
-  const visible = Number.isFinite(maxRows) && maxRows > 0 ? rows.slice(0, maxRows) : rows;
   const showBars = pick(event, "showBars") !== false;
   tableEl.classList.toggle("bars-off", !showBars);
 
@@ -262,7 +260,7 @@ function renderBoard(event) {
     liveEl.textContent = `${event.shortName || event.name}. Coming soon.`;
     return;
   }
-  if (!visible.length) {
+  if (!rows.length) {
     showState("soon", "No coupons yet", "Paid orders with a coupon code will show up on this board.");
     liveEl.textContent = `${event.shortName || event.name}. No coupon uses yet.`;
     return;
@@ -272,8 +270,8 @@ function renderBoard(event) {
   tableEl.hidden = false;
   const body = tableEl.querySelector("tbody");
   body.replaceChildren();
-  const leaderUses = visible[0]?.uses || rows[0]?.uses || 1;
-  for (const row of visible) {
+  const leaderUses = rows[0]?.uses || 1;
+  for (const row of rows) {
     const tone = placeTone(row.rank);
     const tr = document.createElement("tr");
     tr.className = isHighlighted(row.rank) ? `place place-${row.rank} tone-${tone}` : `tone-${tone}`;
@@ -315,7 +313,7 @@ function renderBoard(event) {
     body.append(tr);
   }
 
-  const leader = visible[0];
+  const leader = rows[0];
   liveEl.textContent = `${event.shortName || event.name}. ${leader.code} leads with ${leader.uses} ${leader.uses === 1 ? "use" : "uses"}.`;
 }
 

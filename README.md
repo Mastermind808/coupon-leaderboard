@@ -38,7 +38,6 @@ Site-wide keys set the default. An event can override any of the same keys. Leav
 | `subtitle` | Line under the leaderboard title. The seeded line is `TRACKING GUEST SIGN-UPS IN REAL TIME`. |
 | `boardLabel` | Middle heading. Seeded as `COUPON CODE LEADERBOARD`. |
 | `footerKicker` | Tiny line above the footer name. The Black & White Party uses `THE`. |
-| `maxRows` | How many codes to show. Ranking still uses the full list, then the tail is hidden. |
 | `showBars` | `false` hides the silver progress bars. Counts stay. |
 | `showTotal` | `false` hides the total-tickets line. |
 | `showLastUpdated` | `false` hides the Hawaii timestamp. |
@@ -84,7 +83,6 @@ Example: give one event its own subtitle, colors, and photos.
   "backgroundImage": "assets/havana-bg.jpg",
   "sideLeft": "assets/havana-left.jpg",
   "sideRight": "assets/havana-right.jpg",
-  "maxRows": 8,
   "showBars": true
 }
 ```
@@ -195,4 +193,4 @@ Use **Add → Embed code → Embed a site** (or Popular embeds → Embed a site)
 
 GitHub Pages does not send `X-Frame-Options`, so the page can sit in an iframe. The page background is an opaque black, so a transparent iframe still looks solid. The layout follows the iframe width and does not scroll sideways.
 
-Set the Wix element height to **800px on desktop** and **700px on mobile**. That fits the title, the four Black & White codes, the footer, and the total without an inner scrollbar. Add about 70px for each extra code.
+The board lists every code with at least one paid use. There is no row cap. A Wix frame of **800px on desktop** and **700px on mobile** shows the title and the top of the board. Leave the embed scrollable so the rest of the codes and the footer stay reachable. The page grows with the list and scrolls inside a fixed-height frame.
