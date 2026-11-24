@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-23T05:57:32-10:00",
+  "generatedAt": "2026-11-24T05:57:28-10:00",
   "timezone": "Pacific/Honolulu",
   "locationId": "LFGGW386YaVHK0GGieC7",
   "source": "seed",
@@ -16,23 +16,23 @@
       "leaderboard": [
         {
           "code": "STROBE",
-          "uses": 60
+          "uses": 62
         },
         {
           "code": "Mastermind Entertainment",
-          "uses": 28
+          "uses": 30
         },
         {
           "code": "CONNOR",
-          "uses": 19
+          "uses": 23
         },
         {
           "code": "100",
-          "uses": 15
+          "uses": 20
         },
         {
           "code": "BRENDI",
-          "uses": 15
+          "uses": 16
         },
         {
           "code": "AMARAH",
@@ -48,7 +48,7 @@
         },
         {
           "code": "HAMA",
-          "uses": 3
+          "uses": 4
         },
         {
           "code": "LEIOVER",
@@ -71,6 +71,26 @@
           "uses": 2
         },
         {
+          "code": "ALGRANDE",
+          "uses": 1
+        },
+        {
+          "code": "CAPONE",
+          "uses": 1
+        },
+        {
+          "code": "DEREK",
+          "uses": 1
+        },
+        {
+          "code": "EDWIN",
+          "uses": 1
+        },
+        {
+          "code": "GLENN",
+          "uses": 1
+        },
+        {
           "code": "JENNIFER",
           "uses": 1
         },
@@ -85,9 +105,29 @@
         {
           "code": "SEIKO",
           "uses": 1
+        },
+        {
+          "code": "SHAN",
+          "uses": 1
+        },
+        {
+          "code": "TR",
+          "uses": 1
+        },
+        {
+          "code": "TSAI",
+          "uses": 1
+        },
+        {
+          "code": "WOE5",
+          "uses": 1
+        },
+        {
+          "code": "YSC",
+          "uses": 1
         }
       ],
-      "totalTickets": 177
+      "totalTickets": 202
     },
     {
       "id": "havana-after-dark",
