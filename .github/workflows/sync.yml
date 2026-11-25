@@ -68,6 +68,9 @@ jobs:
         with:
           path: site-dist
 
+      - name: Wait for the Pages artifact to register
+        run: sleep 20
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
